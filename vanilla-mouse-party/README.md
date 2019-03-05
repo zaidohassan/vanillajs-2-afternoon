@@ -217,7 +217,8 @@ const getRandomNumber = function(min, max) {
 };
 
 window.addEventListener('mousemove', function(e) {
-  (mousePosition.x = e.pageX), (mousePosition.y = e.pageY);
+  mousePosition.x = e.pageX;
+  mousePosition.y = e.pageY;
 });
 
 function draw() {
