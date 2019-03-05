@@ -34,7 +34,7 @@ Let's begin by setting up a couple of environment variables. These will be varia
 <summary> <code> ./index.html </code> </summary>
 
 ```js
-const mousePosition = {};
+const mousePosition = { x: 0, y: 0 };
 let drawId;
 
 const getRandomNumber = function(min, max) {
@@ -71,14 +71,14 @@ In this step, we'll add a way for our application to `listen` for the mouse to m
 <summary> <code> ./index.html </code> </summary>
 
 ```js
-const mousePosition = {};
+const mousePosition = { x: 0, y: 0 };
 let drawId;
 
 const getRandomNumber = function(min, max) {
   return Math.round(Math.random() * (max - min + 1)) + min;
 };
 
-window.addEventListener("mousemove", function(e) {
+window.addEventListener('mousemove', function(e) {
   mousePosition.x = e.pageX;
   mousePosition.y = e.pageY;
 });
@@ -138,7 +138,7 @@ In this step we'll take advantage of the built-in `setInterval` (more on that <a
 <summary> <code> ./index.html </code> </summary>
 
 ```js
-const mousePosition = {};
+const mousePosition = { x: 0, y: 0 };
 let drawId;
 
 const getRandomNumber = function(min, max){
@@ -209,21 +209,20 @@ In this step we'll start our interval by creating an event listener that will li
 <summary> <code> ./index.html </code> </summary>
 
 ```js
-const mousePosition = {};
+const mousePosition = { x: 0, y: 0 };
 let drawId;
 
-const getRandomNumber = function(min, max){
+const getRandomNumber = function(min, max) {
   return Math.round(Math.random() * (max - min + 1)) + min;
-}
+};
 
-window.addEventListener("mousemove", function(e) {
-  mousePosition.x = e.pageX;
-  mousePosition.y = e.pageY;
+window.addEventListener('mousemove', function(e) {
+  (mousePosition.x = e.pageX), (mousePosition.y = e.pageY);
 });
 
-function draw (){
-  return setInterval(function(){
-    const container = document.getElementById("wrap");
+function draw() {
+  return setInterval(function() {
+    const container = document.getElementById('wrap');
     const color = `background:rgb(${getRandomNumber(0, 255)},${getRandomNumber(
       0,
       255
@@ -240,23 +239,23 @@ function draw (){
     )}px; `;
     const style = `${left}${top}${color}${size}`;
 
-    const ball = document.createElement("div");
-    ball.classList.add("ball");
+    const ball = document.createElement('div');
+    ball.classList.add('ball');
     ball.style = style;
 
-    ball.addEventListener("animationend", function(e) {
+    ball.addEventListener('animationend', function(e) {
       e.target.remove();
     });
 
     container.appendChild(ball);
   }, 1);
-
-window.addEventListener("mouseover", function(){
-    drawId = draw();
+}
+window.addEventListener('mouseover', function() {
+  drawId = draw();
 });
-window.addEventListener("mouseout", function(){
-    clearInterval(drawId)
-    });
+window.addEventListener('mouseout', function() {
+  clearInterval(drawId);
+});
 ```
 
 </details>
